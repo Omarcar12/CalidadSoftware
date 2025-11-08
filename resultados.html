@@ -19,44 +19,57 @@
             <li><a href="pruebas.html">Pruebas</a></li>
             <li><a href="resultados.html" aria-current="page">Resultados</a></li>
             <li><a href="evaluacion.html">Evaluación</a></li>
-            <li><a href="demo_app.html">Demo</a></li>
-            <li><a href="videos.html">Video</a></li>
-            <li><a href="conclusiones.html">Conclusiones</a></li>
-            <li><a href="recomendaciones.html">Recomendaciones</a></li>
         </ul>
     </nav>
 
     <main id="main-content" class="container">
-        <h1>Resultados de Evaluación de Calidad</h1>
-        <p>Modelo de evaluación cuantitativa de un aplicativo educativo (0-5).</p>
+        <h1>Resultados de evaluación</h1>
+        <p>Ejemplo de presentación de resultados con visualización interactiva.</p>
 
+        <div class="radial-wrap">
+            <div class="radial" id="radial-score">
+                <!-- SVG animated by js/ui.js -->
+                <svg viewBox="0 0 36 36">
+                    <path class="circle-bg" d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#072026" stroke-width="2.5"/>
+                    <path class="circle" stroke="#00d084" stroke-width="2.5" stroke-linecap="round"
+                        d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="0,100"/>
+                    <text x="18" y="20.35" class="score-label" text-anchor="middle" fill="#fff">--</text>
+                </svg>
+            </div>
+
+            <div>
+                <h3 class="muted">Calificación final</h3>
+                <p id="promedio" class="score-label">-- / 5</p>
+                <p class="muted">Usa la página de evaluación para recalcular con tus métricas.</p>
+            </div>
+        </div>
+
+        <h2 style="margin-top:18px;color:#fff">Detalle por componente</h2>
         <table class="results-table">
             <thead>
-                <tr>
-                    <th>Componente</th>
-                    <th>Puntaje (0-5)</th>
-                    <th>Observaciones</th>
-                </tr>
+                <tr><th>Componente</th><th>Puntaje (0-5)</th><th>Observaciones</th></tr>
             </thead>
             <tbody id="results-body">
-                <tr><td>Normas</td><td>4</td><td>Cumple ISO 25010</td></tr>
-                <tr><td>Modelos</td><td>5</td><td>Se aplicó CMMI</td></tr>
-                <tr><td>Estándares</td><td>4</td><td>Checklist IEEE 730 implementado</td></tr>
-                <tr><td>Código</td><td>5</td><td>Buenas prácticas aplicadas</td></tr>
-                <tr><td>Pruebas</td><td>4</td><td>Todas las pruebas ejecutadas</td></tr>
-                <tr><td>Usabilidad</td><td>5</td><td>Usuario fácil de usar</td></tr>
+                <tr><td>Normas</td><td>4</td><td>Soporta ISO/IEC 25010</td></tr>
+                <tr><td>Modelos</td><td>5</td><td>Proceso definido</td></tr>
+                <tr><td>Estándares</td><td>4</td><td>Checklist aplicado</td></tr>
+                <tr><td>Código</td><td>5</td><td>Buenas prácticas</td></tr>
+                <tr><td>Pruebas</td><td>4</td><td>Pruebas documentadas</td></tr>
+                <tr><td>Usabilidad</td><td>5</td><td>Interfaz clara</td></tr>
             </tbody>
         </table>
-
-        <p><button id="calc-btn" class="btn">Calcular Calificación Final</button></p>
-        <p id="promedio" class="score"></p>
     </main>
 
     <footer>
-        <p>Proyecto de Calidad de Software — Recursos y ejemplos para entornos educativos.</p>
+        <p class="muted">Visualización interactiva de resultados.</p>
     </footer>
 
     <script src="js/quality-model.js"></script>
+    <script src="js/ui.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

@@ -20,13 +20,37 @@ Despliegue público (sugerido):
 - Subir el repositorio a GitHub y activar GitHub Pages (Settings -> Pages) apuntando a la rama `main` o `gh-pages`.
 - Alternativamente, usar Netlify o Vercel para publicar la carpeta como sitio estático.
 
-Generar documento PDF en formato APA:
-- He incluido `project_document.md` (plantilla). Abre el archivo en un editor y exporta a PDF (por ejemplo: Visual Studio Code -> Print -> Save as PDF, o usar pandoc).
+ - Generar el `project_document.md` con contenido completo (y luego exportarlo a PDF si quieres que lo haga en HTML/MD y te guíe para convertirlo).
+ - Publicar en GitHub Pages (si me das permiso para crear archivo de configuración o instrucciones adicionales).
 
-Si quieres, continúo con:
-- Mejorar contenido escrito de cada sección (APA, referencias, conclusiones y recomendaciones).
-- Generar el `project_document.md` con contenido completo (y luego exportarlo a PDF si quieres que lo haga en HTML/MD y te guíe para convertirlo).
-- Publicar en GitHub Pages (si me das permiso para crear archivo de configuración o instrucciones adicionales).
+Cómo publicar (resumen rápido — ya hay workflow de deploy):
+
+1) Crea el repositorio en GitHub (https://github.com/new). Puedes incluir README si lo deseas. Copia la URL del repo.
+
+2) Si `git` no está instalado (mensaje que viste), instala Git desde: https://git-scm.com/downloads. Descarga el instalador para Windows y sigue los pasos.
+
+3) Desde PowerShell, en la carpeta del proyecto, ejecuta (sustituye `<USERNAME>` y `<REPO>`):
+
+```powershell
+git init
+git add .
+git commit -m "Initial site: Calidad de Software"
+git branch -M main
+git remote add origin https://github.com/<USERNAME>/<REPO>.git
+git push -u origin main
+```
+
+4) Tras el push, la GitHub Action `.github/workflows/deploy-pages.yml` publicará el contenido. La URL será:
+
+```
+https://<USERNAME>.github.io/<REPO>/
+```
+
+Si prefieres, puedo:
+- Generar un script PowerShell (lista de comandos) que copie/pase todo y te guíe en cada paso.
+- Preparar un `CNAME` si vas a usar dominio personalizado.
+
+Nota sobre el error que comentaste: "git : El término 'git' no se reconoce..." — eso significa que Git no está instalado o no está en la variable PATH de Windows. Instálalo desde https://git-scm.com/downloads y vuelve a intentar los pasos anteriores.
 
 Publicar este sitio en GitHub Pages (pasos rápidos)
 

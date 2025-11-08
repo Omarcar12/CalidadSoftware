@@ -40,8 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const details = { metrics, weights };
         const out = { score, label: lbl, details };
         showResult(out);
-        // store for download
+        // animate radial in results page if present
+        const avgEl = document.getElementById('promedio');
+        if (avgEl) {
+            avgEl.textContent = `${score.toFixed(2)} / 5`;
+        }
+        if (typeof animateRadial === 'function') animateRadial('#radial-score', score);
+        // store for download and persist so resultados.html can read it
         window._lastEval = out;
+        try {
+            localStorage.setItem('lastEvaluation', JSON.stringify(out));
+        } catch (e) {
+            // If storage is not available, keep in-memory only
+            console.warn('No se pudo guardar en localStorage:', e);
+        }
     });
 
     downloadBtn.addEventListener('click', () => {

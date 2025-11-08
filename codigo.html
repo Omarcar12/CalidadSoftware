@@ -19,35 +19,40 @@
             <li><a href="pruebas.html">Pruebas</a></li>
             <li><a href="resultados.html">Resultados</a></li>
             <li><a href="evaluacion.html">Evaluación</a></li>
-            <li><a href="demo_app.html">Demo</a></li>
-            <li><a href="videos.html">Video</a></li>
-            <li><a href="conclusiones.html">Conclusiones</a></li>
-            <li><a href="recomendaciones.html">Recomendaciones</a></li>
         </ul>
     </nav>
 
     <main id="main-content" class="container">
-        <h1>Buenas Prácticas de Programación</h1>
-        <p>Ejemplo de código limpio y comentado:</p>
+        <h1>Buenas prácticas de programación</h1>
+        <p>El código en proyectos educativos debe ser claro, comentado y fácil de mantener para que futuros estudiantes o docentes continúen el trabajo sin fricciones.</p>
 
-        <h3>Antes:</h3>
-        <pre>
-function a(x){return x*2}
-        </pre>
+        <section class="grid">
+            <article class="card">
+                <h3>Estilo y legibilidad</h3>
+                <p>Usar nombres descriptivos, funciones pequeñas y consistencia en el estilo facilita la lectura del código.</p>
+            </article>
 
-        <h3>Después:</h3>
-        <pre>
-// Función que duplica un número
-function duplicarNumero(numero){
+            <article class="card">
+                <h3>Control de versiones</h3>
+                <p>Git permite colaborar y mantener historial. Incluye mensajes claros y ramas para funciones o correcciones.</p>
+            </article>
+
+            <article class="card">
+                <h3>Comentarios y documentación</h3>
+                <p>Documentar las API, las dependencias y los pasos para ejecutar el proyecto reduce la curva de aprendizaje.</p>
+            </article>
+        </section>
+
+        <h3>Ejemplo</h3>
+        <pre style="background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;color:#cfeee3">// Función que duplica un número
+function duplicarNumero(numero) {
     return numero * 2;
 }
         </pre>
-
-        <p>Aplicar buenas prácticas hace que el código sea más legible, mantenible y seguro.</p>
     </main>
 
     <footer>
-        <p>Proyecto de Calidad de Software — Recursos y ejemplos para entornos educativos.</p>
+        <p class="muted">Buenas prácticas aplicadas al desarrollo educativo.</p>
     </footer>
 </body>
 </html>

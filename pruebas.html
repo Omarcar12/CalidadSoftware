@@ -19,33 +19,39 @@
             <li><a href="pruebas.html" aria-current="page">Pruebas</a></li>
             <li><a href="resultados.html">Resultados</a></li>
             <li><a href="evaluacion.html">Evaluación</a></li>
-            <li><a href="demo_app.html">Demo</a></li>
-            <li><a href="videos.html">Video</a></li>
-            <li><a href="conclusiones.html">Conclusiones</a></li>
-            <li><a href="recomendaciones.html">Recomendaciones</a></li>
         </ul>
     </nav>
 
     <main id="main-content" class="container">
-        <h1>Pruebas y Evaluación de Software</h1>
-        <p>Tipos de pruebas importantes:</p>
-        <ul>
-            <li>Unitarias: Verificar funciones individuales.</li>
-            <li>Integración: Verificar que las funciones trabajen juntas correctamente.</li>
-            <li>Funcionales: Probar que el software cumpla los requisitos.</li>
-            <li>Usabilidad: Evaluar la experiencia del usuario.</li>
-        </ul>
+        <h1>Pruebas y evaluación</h1>
+        <p>Realizar pruebas sistemáticas asegura que el aplicativo cumpla sus objetivos pedagógicos y que los usuarios (estudiantes y docentes) tengan una experiencia correcta.</p>
 
-        <p>Ejemplo de prueba unitaria en JavaScript:</p>
-        <pre>
-function testDuplicarNumero() {
-    console.assert(duplicarNumero(2) === 4, "Error: duplicarNumero no funciona correctamente");
+        <section class="grid">
+            <article class="card">
+                <h3>Unitarias</h3>
+                <p>Pruebas pequeñas que verifican funciones individuales. Son rápidas y fáciles de automatizar.</p>
+            </article>
+
+            <article class="card">
+                <h3>Integración</h3>
+                <p>Comprueban que módulos o servicios funcionen bien en conjunto.</p>
+            </article>
+
+            <article class="card">
+                <h3>Usabilidad</h3>
+                <p>Evaluaciones con usuarios reales para medir si la interfaz cumple con objetivos pedagógicos.</p>
+            </article>
+        </section>
+
+        <h3>Ejemplo de test simple</h3>
+        <pre style="background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;color:#cfeee3">function testDuplicarNumero() {
+    console.assert(duplicarNumero(2) === 4, 'duplicarNumero debería devolver 4');
 }
         </pre>
     </main>
 
     <footer>
-        <p>Proyecto de Calidad de Software — Recursos y ejemplos para entornos educativos.</p>
+        <p class="muted">Incluye pruebas automáticas y tests de usabilidad para mejores resultados.</p>
     </footer>
 </body>
 </html>
