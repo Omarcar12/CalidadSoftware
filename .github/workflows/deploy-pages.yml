@@ -17,10 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./public  # Carpeta donde están tus archivos web
-          
-      - name: Deploy to GitHub Pages
+      - name: Build and deploy
         uses: actions/deploy-pages@v1
+        with:
+          source_dir: ./public  # Carpeta donde están tus archivos web
