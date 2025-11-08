@@ -20,6 +20,7 @@ jobs:
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./
-
-  # After this workflow runs, GitHub Pages will publish the content uploaded above.
+          path: ./public  # Carpeta donde están tus archivos web
+          
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
