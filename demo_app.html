@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo App - Aplicativo Educativo</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <nav aria-label="Navegación principal">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="evaluacion.html">Evaluación</a></li>
+            <li><a href="demo_app.html" aria-current="page">Demo</a></li>
+            <li><a href="videos.html">Video</a></li>
+            <li><a href="conclusiones.html">Conclusiones</a></li>
+            <li><a href="recomendaciones.html">Recomendaciones</a></li>
+            <li><a href="index.html">Volver</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content" class="container">
+        <h1>Demo: Mini-quiz educativo</h1>
+        <p>Esta pequeña demo sirve como ejemplo de aplicativo educativo que se puede evaluar con la herramienta de evaluación.</p>
+
+        <div id="quiz">
+            <p>¿Cuál es la respuesta correcta a 2 + 2?</p>
+            <button class="btn" data-answer="3">3</button>
+            <button class="btn" data-answer="4">4</button>
+            <button class="btn" data-answer="5">5</button>
+            <p id="quiz-result" aria-live="polite"></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Demo educativo simple — Usar como objetivo de evaluación.</p>
+    </footer>
+
+    <script>
+    document.getElementById('quiz').addEventListener('click', e => {
+        if (e.target.matches('button[data-answer]')) {
+            const a = e.target.getAttribute('data-answer');
+            const out = document.getElementById('quiz-result');
+            if (a === '4') out.textContent = 'Correcto ✅'; else out.textContent = 'Incorrecto ❌';
+        }
+    });
+    </script>
+</body>
+</html>

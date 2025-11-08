@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Página para evaluar cuantitativamente la calidad de un aplicativo educativo (0-5).">
+    <title>Evaluación - Calidad de Software</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <script defer src="js/quality-model.js"></script>
+    <script defer src="js/evaluacion.js"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <nav aria-label="Navegación principal">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="normas.html">Normas</a></li>
+            <li><a href="modelos.html">Modelos</a></li>
+            <li><a href="estandares.html">Estándares</a></li>
+            <li><a href="codigo.html">Código</a></li>
+            <li><a href="pruebas.html">Pruebas</a></li>
+            <li><a href="resultados.html">Resultados</a></li>
+            <li><a href="evaluacion.html" aria-current="page">Evaluación</a></li>
+            <li><a href="demo_app.html">Demo</a></li>
+            <li><a href="videos.html">Video</a></li>
+            <li><a href="conclusiones.html">Conclusiones</a></li>
+            <li><a href="recomendaciones.html">Recomendaciones</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content" class="container">
+        <h1>Evaluación cuantitativa de un aplicativo educativo</h1>
+        <p>Introduce puntajes del 0 al 5 para cada componente. El sistema calculará una calificación final (0-5) y dará una etiqueta cualitativa.</p>
+
+        <form id="eval-form">
+            <label>Normas (0-5): <input type="number" step="0.1" min="0" max="5" name="normas" value="4"></label><br>
+            <label>Modelos (0-5): <input type="number" step="0.1" min="0" max="5" name="modelos" value="4"></label><br>
+            <label>Estándares (0-5): <input type="number" step="0.1" min="0" max="5" name="estandares" value="4"></label><br>
+            <label>Código (0-5): <input type="number" step="0.1" min="0" max="5" name="codigo" value="4"></label><br>
+            <label>Pruebas (0-5): <input type="number" step="0.1" min="0" max="5" name="pruebas" value="4"></label><br>
+            <label>Usabilidad (0-5): <input type="number" step="0.1" min="0" max="5" name="usabilidad" value="4"></label><br>
+
+            <p>Pesos (opcional):</p>
+            <label>Normas: <input type="number" step="0.1" min="0" name="w_normas" value="1"></label>
+            <label>Modelos: <input type="number" step="0.1" min="0" name="w_modelos" value="1"></label>
+            <label>Estándares: <input type="number" step="0.1" min="0" name="w_estandares" value="1"></label>
+            <label>Código: <input type="number" step="0.1" min="0" name="w_codigo" value="1"></label>
+            <label>Pruebas: <input type="number" step="0.1" min="0" name="w_pruebas" value="1"></label>
+            <label>Usabilidad: <input type="number" step="0.1" min="0" name="w_usabilidad" value="1"></label>
+
+            <p>
+                <button type="button" id="run-eval" class="btn">Calcular evaluación</button>
+                <button type="button" id="download-json" class="btn">Descargar resultado (JSON)</button>
+            </p>
+        </form>
+
+        <div id="eval-result" aria-live="polite"></div>
+    </main>
+
+    <footer>
+        <p>Proyecto de Calidad de Software — Página de evaluación.</p>
+    </footer>
+</body>
+</html>
