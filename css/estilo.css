@@ -65,6 +65,19 @@ p{color:var(--muted);line-height:1.6;margin:0 0 14px}
 form label{display:block;margin:8px 0;color:var(--muted)}
 input[type=number]{background:var(--panel);border:1px solid rgba(255,255,255,0.03);color:#e6eef3;padding:6px 8px;border-radius:6px;width:92px}
 
+/* Guide section and details */
+.guide{margin:14px 0 22px;padding:12px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+.guide details{margin:8px 0;padding:10px;background:rgba(255,255,255,0.01);border-radius:6px}
+.guide summary{font-weight:700;cursor:pointer;color:#e6fff5;padding:6px}
+.guide summary::-webkit-details-marker{display:none}
+.guide summary:after{content:' ▸';float:right;color:var(--accent)}
+.guide details[open] summary:after{content:' ▾'}
+
+/* Form message / validation */
+#form-message{color:#ffb3a7;font-weight:600;margin-bottom:8px}
+.btn-example{background:transparent;color:var(--accent);border:1px dashed rgba(0,208,132,0.12);padding:6px 12px;border-radius:8px}
+.btn-example:hover{background:rgba(0,208,132,0.03)}
+
 /* small responsive */
 @media (max-width:700px){.hero{flex-direction:column;align-items:flex-start}.hero .graphic{width:160px;height:120px}}
 

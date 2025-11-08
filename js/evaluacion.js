@@ -6,22 +6,31 @@ document.addEventListener('DOMContentLoaded', () => {
     function readForm() {
         const f = document.getElementById('eval-form');
         const metrics = {
-            normas: parseFloat(f.normas.value) || 0,
-            modelos: parseFloat(f.modelos.value) || 0,
-            estandares: parseFloat(f.estandares.value) || 0,
-            codigo: parseFloat(f.codigo.value) || 0,
-            pruebas: parseFloat(f.pruebas.value) || 0,
-            usabilidad: parseFloat(f.usabilidad.value) || 0
+            normas: !isNaN(parseFloat(f.normas.value)) ? parseFloat(f.normas.value) : 0,
+            modelos: !isNaN(parseFloat(f.modelos.value)) ? parseFloat(f.modelos.value) : 0,
+            estandares: !isNaN(parseFloat(f.estandares.value)) ? parseFloat(f.estandares.value) : 0,
+            codigo: !isNaN(parseFloat(f.codigo.value)) ? parseFloat(f.codigo.value) : 0,
+            pruebas: !isNaN(parseFloat(f.pruebas.value)) ? parseFloat(f.pruebas.value) : 0,
+            usabilidad: !isNaN(parseFloat(f.usabilidad.value)) ? parseFloat(f.usabilidad.value) : 0
         };
         const weights = {
-            normas: parseFloat(f.w_normas.value) || 1,
-            modelos: parseFloat(f.w_modelos.value) || 1,
-            estandares: parseFloat(f.w_estandares.value) || 1,
-            codigo: parseFloat(f.w_codigo.value) || 1,
-            pruebas: parseFloat(f.w_pruebas.value) || 1,
-            usabilidad: parseFloat(f.w_usabilidad.value) || 1
+            normas: (()=>{const v=parseFloat(f.w_normas.value); return (!isNaN(v)&&isFinite(v))?v:1})(),
+            modelos: (()=>{const v=parseFloat(f.w_modelos.value); return (!isNaN(v)&&isFinite(v))?v:1})(),
+            estandares: (()=>{const v=parseFloat(f.w_estandares.value); return (!isNaN(v)&&isFinite(v))?v:1})(),
+            codigo: (()=>{const v=parseFloat(f.w_codigo.value); return (!isNaN(v)&&isFinite(v))?v:1})(),
+            pruebas: (()=>{const v=parseFloat(f.w_pruebas.value); return (!isNaN(v)&&isFinite(v))?v:1})(),
+            usabilidad: (()=>{const v=parseFloat(f.w_usabilidad.value); return (!isNaN(v)&&isFinite(v))?v:1})()
         };
         return { metrics, weights };
+    }
+
+    function validateWeights(weights){
+        const keys = Object.keys(weights||{});
+        for(const k of keys){
+            const w = weights[k];
+            if (!isFinite(w) || isNaN(w) || w < 0) return { ok:false, key:k, value:w };
+        }
+        return { ok:true };
     }
 
     function showResult(scoreObj) {
@@ -35,11 +44,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btn.addEventListener('click', () => {
         const { metrics, weights } = readForm();
+        const msgArea = document.getElementById('form-message');
+        // validate weights
+        const v = validateWeights(weights);
+        if (!v.ok){
+            if (msgArea) msgArea.innerHTML = `<strong style="color:#ffb3a7">Error:</strong> El peso para <code>${v.key}</code> no es válido (${v.value}). Usa un número >= 0.`;
+            return;
+        }
         const score = QualityModel.computeScore(metrics, weights);
         const lbl = QualityModel.label(score);
         const details = { metrics, weights };
         const out = { score, label: lbl, details };
         showResult(out);
+        // clear message
+        const msgArea2 = document.getElementById('form-message'); if (msgArea2) msgArea2.innerHTML = '';
         // animate radial in results page if present
         const avgEl = document.getElementById('promedio');
         if (avgEl) {
@@ -55,6 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn('No se pudo guardar en localStorage:', e);
         }
     });
+
+    // 'Usar ejemplo' button behavior: fills the form with example values
+    const exampleBtn = document.getElementById('use-example');
+    if (exampleBtn){
+        exampleBtn.addEventListener('click', ()=>{
+            const f = document.getElementById('eval-form');
+            if (!f) return;
+            f.normas.value = 4; f.modelos.value = 5; f.estandares.value = 4; f.codigo.value = 5; f.pruebas.value = 4; f.usabilidad.value = 5;
+            f.w_normas.value = 1; f.w_modelos.value = 1; f.w_estandares.value = 1; f.w_codigo.value = 1; f.w_pruebas.value = 1; f.w_usabilidad.value = 1;
+            // optionally run evaluation automatically
+            // btn.click(); // uncomment if you prefer auto-run
+            const msgArea = document.getElementById('form-message'); if (msgArea) msgArea.innerHTML = '<em>Ejemplo cargado — ajusta valores y pulsa "Calcular evaluación"</em>';
+        });
+    }
 
     downloadBtn.addEventListener('click', () => {
         const data = window._lastEval || { error: 'No hay evaluación disponible. Ejecute primero.' };

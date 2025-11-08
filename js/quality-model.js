@@ -17,12 +17,19 @@ const QualityModel = (() => {
         let totalWeight = 0;
         let weightedSum = 0;
         keys.forEach(k => {
-            const w = weights && weights[k] ? Number(weights[k]) : 1;
+            // Accept explicit 0 weights and coerce invalid to 1
+            const rawW = weights && weights[k] !== undefined ? Number(weights[k]) : NaN;
+            const w = (!isNaN(rawW) && isFinite(rawW)) ? Math.max(0, rawW) : 1;
             const m = metrics && metrics[k] !== undefined ? normalize(metrics[k]) : 0;
             totalWeight += w;
             weightedSum += m * w;
         });
-        if (totalWeight === 0) return 0;
+        if (totalWeight === 0) {
+            // If all weights are zero or missing, fallback to simple average of metrics
+            const vals = keys.map(k => (metrics && metrics[k] !== undefined) ? normalize(metrics[k]) : 0);
+            const sum = vals.reduce((a,b)=>a+b,0);
+            return sum / vals.length;
+        }
         // result is between 0..5 already
         return weightedSum / totalWeight;
     }

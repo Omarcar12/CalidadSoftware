@@ -29,7 +29,81 @@
             <h1>Evaluación cuantitativa</h1>
         <p>Introduce puntajes del 0 al 5 para cada componente. El sistema calculará una calificación final (0-5) y dará una etiqueta cualitativa.</p>
 
+        <section id="guia-evaluacion" class="guide" aria-labelledby="guia-title">
+            <h2 id="guia-title">Guía de evaluación (qué calificar)</h2>
+            <p>Si tienes dudas sobre qué incluir en cada puntaje, abre cada sección para ver ejemplos y criterios sugeridos:</p>
+
+            <details>
+                <summary><strong>Normas</strong> — ¿Qué considerar?</summary>
+                <ul>
+                    <li>Cumplimiento con normas aplicables (por ejemplo ISO/IEC 25010, accesibilidad WCAG).</li>
+                    <li>Si la arquitectura y los requerimientos reflejan buenas prácticas normativas.</li>
+                    <li>Existencia de documentación que explique conformidad con normas.</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary><strong>Modelos</strong> — ¿Qué calificar?</summary>
+                <ul>
+                    <li>Existencia de modelos de proceso o ciclo de vida (p. ej. Scrum, RUP, modelos ágiles).</li>
+                    <li>Claridad en roles, artefactos y pasos del proceso.</li>
+                    <li>Uso de modelos para gestión de calidad y control de cambios.</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary><strong>Estándares</strong> — ¿Qué medir?</summary>
+                <ul>
+                    <li>Aplicación de estándares de codificación, pruebas y documentación.</li>
+                    <li>Checklists y plantillas usadas en revisiones.</li>
+                    <li>Consistencia en formatos y políticas internas.</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary><strong>Código</strong> — ¿En qué fijarse?</summary>
+                <ul>
+                    <li>Claridad, modularidad y legibilidad del código.</li>
+                    <li>Uso de control de versiones y comentarios útiles.</li>
+                    <li>Buenas prácticas: manejo de errores, seguridad básica, pruebas unitarias.</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary><strong>Pruebas</strong> — ¿Qué evaluar?</summary>
+                <ul>
+                    <li>Existencia y cobertura de pruebas (unitarias, de integración).</li>
+                    <li>Documentación de cómo ejecutar pruebas y resultados reproducibles.</li>
+                    <li>Automatización y reporting de fallos.</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary><strong>Usabilidad</strong> — ¿Qué revisar?</summary>
+                <ul>
+                    <li>Accesibilidad, navegación clara y consistencia en la interfaz.</li>
+                    <li>Facilidad de uso para estudiantes y docentes, mensajes de ayuda.</li>
+                    <li>Soporte para dispositivos móviles y distintas resoluciones.</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary><strong>¿Qué son los pesos?</strong></summary>
+                <p>Los <em>pesos</em> permiten indicar qué tan importante es cada componente al calcular la calificación final. El cálculo usa un promedio ponderado:</p>
+                <p><em>score = (suma de (puntaje * peso)) / (suma de pesos)</em></p>
+                <p>Recomendaciones:</p>
+                <ul>
+                    <li>Si no especificas pesos, el sistema los trata como iguales (1 cada uno).</li>
+                    <li>Usa <strong>peso 0</strong> para ignorar un componente (p. ej. si no aplica).</li>
+                    <li>Pesos mayores que 1 aumentan la influencia del componente en el resultado.</li>
+                    <li>Evita valores negativos; el sistema solo acepta pesos >= 0.</li>
+                </ul>
+                <p>Ejemplo: si quieres priorizar pruebas, pon <code>w_pruebas</code> = 2 y los demás en 1; el resultado se acercará más a la puntuación de pruebas.</p>
+            </details>
+        </section>
+
         <form id="eval-form">
+            <div id="form-message" role="status" aria-live="polite" style="margin-bottom:8px"></div>
             <label>Normas (0-5): <input type="number" step="0.1" min="0" max="5" name="normas" value="4"></label><br>
             <label>Modelos (0-5): <input type="number" step="0.1" min="0" max="5" name="modelos" value="4"></label><br>
             <label>Estándares (0-5): <input type="number" step="0.1" min="0" max="5" name="estandares" value="4"></label><br>
@@ -47,6 +121,7 @@
 
             <p>
                 <button type="button" id="run-eval" class="btn">Calcular evaluación</button>
+                <button type="button" id="use-example" class="btn btn-example">Usar ejemplo</button>
                 <button type="button" id="download-json" class="btn">Descargar resultado (JSON)</button>
             </p>
         </form>
